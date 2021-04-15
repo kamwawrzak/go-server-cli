@@ -7,6 +7,6 @@ Usage:
 
 Available commands:
 
-serverapp run --file <file path> - run HTTP server serving passed file;
-serverapp help - display help;
-serverapp version - display version;
+serverapp run --file <file path> - run HTTP server serving passed file; \n
+serverapp help - display help; \n
+serverapp version - display version; \n
