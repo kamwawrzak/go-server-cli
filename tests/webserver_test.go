@@ -27,3 +27,19 @@ func TestHomePageHandler(t *testing.T) {
 		t.Error("Expected string is not present in body.")
 	}
 }
+
+func TestWrongRequestMethod(t *testing.T) {
+	req, err := http.NewRequest("POST", "/", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	file := "test.html"
+	newFileHandler := &webserver.FilesHandler{FilePath: file}
+	h := http.HandlerFunc(newFileHandler.HomePageHandler)
+	h.ServeHTTP(rr, req)
+	if status := rr.Code; status != http.StatusMethodNotAllowed {
+		t.Errorf("Expected status %v and received %v",
+			http.StatusMethodNotAllowed, status)
+	}
+}
